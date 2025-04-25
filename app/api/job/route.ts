@@ -6,8 +6,8 @@ import {NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     try {
-        const {company, role, status, notes, link} = await request.json();
-        if(!company || !role || !status || !notes || !link) {
+        const {company, role, status, notes, link, company_website_url, job_posting_url,location,  description,contact_email, contact_name } = await request.json();
+        if(!company || !role || !status || !notes || !link || !company_website_url || !job_posting_url || !location || !description || !contact_email || !contact_name) {
             return NextResponse.json({error: "Please fill all the fields"}, {status: 400})
         }
         await dbConnect();
@@ -17,7 +17,14 @@ export async function POST(request: NextRequest) {
             role,
             status,
             notes,
-            link
+            link,
+            company_website_url,
+            job_posting_url,
+            location,
+            description,
+            contact_email,
+            contact_name
+
         })
 
         return NextResponse.json(
