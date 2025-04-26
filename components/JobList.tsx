@@ -4,6 +4,8 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { Separator } from './ui/separator'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import dateFormat, { masks } from "dateformat";
+
 
 const JobList = ({ jobs }) => {
 
@@ -39,9 +41,11 @@ const JobList = ({ jobs }) => {
                                     </div>
 
                                 </td>
-                                <td className="px-4 py-4 text-gray-800">{job.role}</td>
+                                <td className="px-4 py-4 text-gray-600">{job.job_title}</td>
                                 <td className="px-4 py-4 text-xs font-medium"> <span className='bg-pink-200 px-2 rounded-full'>{job.status} </span> </td>
-                                <td className="px-4 py-4">{job.date}</td>
+                                <td className="px-4 py-4">
+                                    <span className="text-gray-500 text-xs font-medium">{dateFormat(job.application_date, "mmmm dS, yyyy")}</span>
+                                </td>
                                 <td className="px-4 py-4">
                                     <div className="flex h-5 items-center space-x-2 text-sm">
                                         <Link href={`/job/${job._id}`}
