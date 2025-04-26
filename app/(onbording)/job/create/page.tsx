@@ -1,0 +1,237 @@
+'use client'
+
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Separator } from '@/components/ui/separator'
+import { Textarea } from '@/components/ui/textarea'
+import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
+import React from 'react'
+
+const createNewJobApplication = () => {
+    return (
+        <section className='w-full h-full bg-gray-100 px-10 py-8'>
+            <div className='flex flex-row items-center justify-between '>
+                <h1 className='text-2xl font-bold text-center'>Add New Job Application</h1>
+                <Link href={'/job/create'}>
+                    <Button variant='outline' className=' cursor-pointer'> <ArrowLeft className='h-4' /> Back to Dashboard</Button>
+                </Link>
+            </div>
+
+
+            <section className=''>
+
+                <div className='py-4 shadow-md p-4 rounded-md mt-4'>
+                    <div className='flex flex-col gap-2 mb-8'>
+                        <h1 className='text-1xl text-gray-800 font-bold'>Job Details</h1>
+                        <p className='text-xs font-medium text-gray-500'>Fill in the information about the job you're applying for</p>
+                    </div>
+                    <Separator className='my-4' />
+
+
+                    <form action="">
+                        {/* // Company Information  */}
+                        <div className='flex flex-col gap-4  '>
+                            <h2 className='text-1xl text-gray-800 font-semibold'>Company Information</h2>
+
+                            <div className='flex flex-col gap-2 w-full'>
+                                <div className='flex flex-row w-full gap-8'>
+
+                                    <div className='w-full'>
+                                        <Label htmlFor="company" className='text-sm font-medium text-gray-800'>Company Name</Label>
+                                        <Input type="text" placeholder='e.g. Google, Microsoft' className='w-full outline-none' />
+                                    </div>
+
+                                    <div className='w-full'>
+                                        <Label htmlFor="company-website" className='text-sm font-medium text-gray-800'>Company Website</Label>
+                                        <Input type="text" placeholder='https://example.com' className='w-full' />
+                                    </div>
+                                </div>
+                                <div className='flex flex-row w-full gap-8'>
+
+                                    <div className='w-full'>
+                                        <Label htmlFor="location" className='text-sm font-medium text-gray-800'>Location</Label>
+                                        <Input type="text" placeholder='e.g. New Delhi, Gurgaon, Noida or Remote' className='w-full outline-none' />
+                                    </div>
+                                    <div className='w-full'>
+                                        <Label htmlFor="location" className='text-sm font-medium text-gray-800'>Work Type</Label>
+                                        <Select defaultValue="remote" >
+                                            <SelectTrigger className="w-[180px]">
+                                                <SelectValue placeholder="Remote" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="remote">Remote</SelectItem>
+                                                <SelectItem value="on-site">On-site</SelectItem>
+                                                <SelectItem value="hybrid">Hybrid</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <Separator className='my-4' />
+                        </div>
+
+                        {/* Position Details  */}
+
+                        <div className='flex flex-col gap-4'>
+                            <h2 className='text-1xl text-gray-800 font-semibold'>Position Details</h2>
+
+                            <div className='flex flex-col gap-2 w-full'>
+                                <div className='flex flex-row w-full gap-8'>
+                                    <div className='w-full'>
+                                        <Label htmlFor="company" className='text-sm font-medium text-gray-800'>Job Title (Role)</Label>
+                                        <Input type="text" placeholder='e.g. Frontend Engineer' className='w-full outline-none' />
+                                    </div>
+
+                                    <div className='w-full'>
+                                        <Label htmlFor="company-website" className='text-sm font-medium text-gray-800'>Job Type</Label>
+                                        <Select defaultValue="remote" >
+                                            <SelectTrigger className="w-[180px]">
+                                                <SelectValue placeholder="Remote" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="full-time">Full-time</SelectItem>
+                                                <SelectItem value="part-time">Part-time</SelectItem>
+                                                <SelectItem value="internshipt">Internship</SelectItem>
+                                                <SelectItem value="freelance">Freelance</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+
+                                    </div>
+                                </div>
+                                <div className='flex flex-row w-full gap-8'>
+                                    <div className='w-full'>
+                                        <Label htmlFor="company" className='text-sm font-medium text-gray-800'>Salary Range (Optional)</Label>
+                                        <Input type="text" placeholder='e.g. INR 250000-300000' className='w-full outline-none' />
+                                    </div>
+
+                                    <div className='w-full'>
+                                        <Label htmlFor="company-website" className='text-sm font-medium text-gray-800'>Job Posting URL</Label>
+                                        <Input type="text" placeholder='https://careers.example.com/job/123' className='w-full' />
+                                    </div>
+                                </div>
+                            </div>
+                            <Separator className='my-4' />
+                        </div>
+
+                        {/* Application Informations  */}
+
+                        <div className='flex flex-col gap-4'>
+                            <h2 className='text-1xl text-gray-800 font-semibold'>Application Informations</h2>
+
+                            <div className='flex flex-col gap-2 w-full'>
+                                <div className='flex flex-row w-full gap-8'>
+                                    <div className='w-full'>
+                                        <Label htmlFor="company" className='text-sm font-medium text-gray-800'>Application Date</Label>
+                                        <Input type="date" className='w-full outline-none' />
+                                    </div>
+
+                                    <div className='w-full'>
+                                        <Label htmlFor="company-website" className='text-sm font-medium text-gray-800'>Status</Label>
+                                        <Select >
+                                            <SelectTrigger className="w-[180px]">
+                                                <SelectValue placeholder="Rejected" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="full-time">Full-time</SelectItem>
+                                                <SelectItem value="part-time">Part-time</SelectItem>
+                                                <SelectItem value="internshipt">Internship</SelectItem>
+                                                <SelectItem value="freelance">Freelance</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+
+                                    </div>
+                                </div>
+                                <div className='flex flex-row w-full gap-8'>
+                                    <div className='w-full'>
+                                        <Label htmlFor="company" className='text-sm font-medium text-gray-800'>Application Method</Label>
+                                        <Select >
+                                            <SelectTrigger className="w-[180px]">
+                                                <SelectValue placeholder="Company Website" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="company-website">Company Website</SelectItem>
+                                                <SelectItem value="Linkedin">LinkedIn</SelectItem>
+                                                <SelectItem value="cold-email">Cold Email</SelectItem>
+                                                <SelectItem value="referral">Referral</SelectItem>
+                                                <SelectItem value="others">Others</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    <div className='w-full'>
+                                        <Label htmlFor="company-website" className='text-sm font-medium text-gray-800'>Referral Name (Optional)</Label>
+                                        <Input type="text" placeholder='' className='w-full' />
+                                    </div>
+                                </div>
+                                <Label htmlFor="company" className='text-sm font-medium text-gray-800'>Job Description</Label>
+                                <Textarea className='w-full' />
+                                <span className='text-xs font-medium text-gray-500'>Brief description of the job requirements and responsibilities.</span>
+                            </div>
+                            <Separator className='my-4' />
+                        </div>
+
+
+                        {/* Contact Information  */}
+
+                        <div className='flex flex-col gap-4'>
+                            <h2 className='text-1xl text-gray-800 font-semibold'>Contact Informations</h2>
+
+                            <div className='flex flex-col gap-2 w-full'>
+                                <div className='flex flex-row w-full gap-8'>
+                                    <div className='w-full'>
+                                        <Label htmlFor="company" className='text-sm font-medium text-gray-800'>Contact Name</Label>
+                                        <Input type="text" className='w-full outline-none' />
+                                    </div>
+
+                                    <div className='w-full'>
+                                        <Label htmlFor="company-website" className='text-sm font-medium text-gray-800'>Contact Position</Label>
+                                        <Input type="text" className='w-full outline-none' />
+                                    </div>
+                                </div>
+                                <div className='flex flex-row w-full gap-8'>
+                                    <div className='w-full'>
+                                        <Label htmlFor="company" className='text-sm font-medium text-gray-800'>Contact Email</Label>
+                                        <Input type="email" className='w-full outline-none' />
+                                    </div>
+
+                                    <div className='w-full'>
+                                        <Label htmlFor="company-website" className='text-sm font-medium text-gray-800'>Contact Phone</Label>
+                                        <Input type="number" placeholder='' className='w-full' />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <Separator className='my-4' />
+                        </div>
+
+
+                        {/* Additional Notes  */}
+                        <div className='flex flex-col gap-4'>
+                            <h2 className='text-1xl text-gray-800 font-semibold'>Additional Notes</h2>
+
+                            <div className='flex flex-col gap-2 w-full'>
+                                <Label htmlFor="company" className='text-sm font-medium text-gray-800'>Notes</Label>
+                                <Textarea className='w-full' />
+                                <span className='text-xs font-medium text-gray-500'>Any additional notes or comments about the job application.</span>
+                            </div>
+                            <Separator className='my-4' />
+                        </div>
+
+
+                        <div className='flex flex-row items-center justify-end gap-4'>
+                            <Button variant={'destructive'} type='reset' className='cursor-pointer'>Cancel</Button>
+                            <Button variant={'default'} type='submit' className='cursor-pointer bg-blue-500 text-white hover:bg-blue-600'>Save Job Application</Button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </section>
+    )
+}
+
+export default createNewJobApplication
