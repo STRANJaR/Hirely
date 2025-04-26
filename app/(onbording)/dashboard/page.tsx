@@ -15,6 +15,7 @@ const Dashboard = () => {
   const [jobs, setJobs] = React.useState([])
   const [loading, setLoading] = React.useState(false)
 
+  console.log("Jobs: ", jobs)
 
   const fetchJobs = async () => {
     setLoading(true)
@@ -22,15 +23,21 @@ const Dashboard = () => {
       const response = await axios.get('http://localhost:3000/api/job');
       console.log(response.data.jobs);
       setJobs(response.data.jobs)
-      toast.success('Jobs fetched successfully', {style: { backgroundColor: '#b9f8cf' }})
+      toast.success('Jobs fetched successfully', { style: { backgroundColor: '#b9f8cf' } })
     } catch (error) {
       console.error('Error fetching jobs:', error);
-      toast.error('Error fetching jobs', {style: { backgroundColor: '#ffc9c9' }})
+      toast.error('Error fetching jobs', { style: { backgroundColor: '#ffc9c9' } })
       setLoading(false)
-      
+
     }
     setLoading(false)
   }
+
+  const totalJobApplications = jobs?.length;
+  const totalJobApplicationsInProgress = jobs?.filter(job => job?.status !== 'Rejected').length;
+  const totalJobApplicationsInterview = jobs?.filter(job => job?.status === 'Interview').length;
+  const totalJobOffers = jobs?.filter(job => job?.status === 'Offer').length;
+  
 
   useEffect(() => {
     fetchJobs()
@@ -42,7 +49,7 @@ const Dashboard = () => {
       <div className='flex flex-row items-center justify-between '>
         <h1 className='text-2xl font-bold text-center'>Dashboard</h1>
         <Link href={'/job/create'}>
-        <Button variant='default' className='bg-blue-500 text-white cursor-pointer'> <Plus className='h-4' /> Add New Job</Button>
+          <Button variant='default' className='bg-blue-500 hover:bg-blue-700 text-white cursor-pointer'> <Plus className='h-4' /> Add New Job</Button>
         </Link>
       </div>
 
@@ -50,25 +57,25 @@ const Dashboard = () => {
       <div className='flex flex-row gap-5 mt-8'>
         <JobApplicationCard
           cardTitle={"Total Job Applications"}
-          value={10}
+          value={totalJobApplications}
           redirectTitle={"View All Applications"}
           redirectLocation={"/applications"}
         />
         <JobApplicationCard
           cardTitle={"In Progress"}
-          value={14}
+          value={totalJobApplicationsInProgress}
           redirectTitle={"View active"}
           redirectLocation={"/applications"}
         />
         <JobApplicationCard
           cardTitle={"Interview Scheduled"}
-          value={2}
+          value={totalJobApplicationsInterview}
           redirectTitle={"View Interviews"}
           redirectLocation={"/applications"}
         />
         <JobApplicationCard
           cardTitle={"Offers"}
-          value={4}
+          value={totalJobOffers}
           redirectTitle={"View Offers"}
           redirectLocation={"/applications"}
         />
@@ -85,15 +92,15 @@ const Dashboard = () => {
       <div className='bg-white rounded-md shadow-md px-4 py-4'>
         <div className='py-2 flex flex-row items-center justify-between'>
           <div>
-          <h1 className='text-1xl font-semibold text-gray-800'>Recent Applications</h1>
-          <span className='text-xs text-gray-500'>Your most recent job applications.</span>
+            <h1 className='text-1xl font-semibold text-gray-800'>Recent Applications</h1>
+            <span className='text-xs text-gray-500'>Your most recent job applications.</span>
           </div>
           <div>
             <span className='text-xs text-gray-500'>
-              <Button 
-              onClick={() => fetchJobs()}
-              variant='outline' className='text-gray-500 hover:bg-gray-200 transition-all cursor-pointer'>
-               {loading ? <RotateCw className='h-4 w-4 animate-spin' /> : <RotateCw className='h-4 w-4' />}
+              <Button
+                onClick={() => fetchJobs()}
+                variant='outline' className='text-gray-500 hover:bg-gray-200 transition-all cursor-pointer'>
+                {loading ? <RotateCw className='h-4 w-4 animate-spin' /> : <RotateCw className='h-4 w-4' />}
               </Button>
             </span>
           </div>

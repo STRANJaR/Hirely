@@ -25,13 +25,13 @@ const createNewJobApplication = () => {
             const response = await axios.post('http://localhost:3000/api/job', payload)
             console.log(response.data);
             if (response.status === 201) {
-                toast.success("Job application submitted successfully")
+                toast.success("Job application submitted successfully", { style: { backgroundColor: '#b9f8cf' } })
                 setLoading(false)
                 return;
             }
         } catch (error) {
             console.error("Error submitting job application:", error);
-            toast.error("Error submitting job application. Please try again.");
+            toast.error("Error submitting job application. Please try again.", { style: { backgroundColor: '#ffc9c9' } });
             setLoading(false)
             return;
 
@@ -222,7 +222,7 @@ const createNewJobApplication = () => {
                                                     </SelectTrigger>
                                                     <SelectContent>
                                                         <SelectItem value="Applied">Applied</SelectItem>
-                                                        <SelectItem value="Interviewing">Interviewing</SelectItem>
+                                                        <SelectItem value="Interview">Interview</SelectItem>
                                                         <SelectItem value="Offer">Offer</SelectItem>
                                                         <SelectItem value="Rejected">Rejected</SelectItem>
                                                         <SelectItem value="Accepted">Accepted</SelectItem>

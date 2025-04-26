@@ -66,7 +66,7 @@ const JobSchema = new Schema<IJob>({
     status: {
         type: String,
         required: true,
-        enum: ["Applied", "Interviewing", "Offer", "Rejected", "Accepted"]
+        enum: ["Applied", "Interview", "Offer", "Rejected", "Accepted"]
     },
     application_method: {
         type: String,
