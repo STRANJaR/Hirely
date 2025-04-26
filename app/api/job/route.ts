@@ -97,6 +97,7 @@ export async function POST(request: NextRequest) {
         }
 
 
+        // GET all jobs
         export async function GET(request: NextRequest) {
             try {
                 await dbConnect();
@@ -108,6 +109,7 @@ export async function POST(request: NextRequest) {
             }
         }
 
+        // DELETE a job
         export async function PATCH(request: NextRequest) {
             try {
                 const { id, status } = await request.json();
