@@ -3,15 +3,17 @@
 import Alert from '@/components/Alert';
 import JobApplicationForm from '@/components/JobApplicationForm';
 import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import axios from 'axios';
 import { ArrowLeft, Trash2 } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React from 'react'
 import { toast } from 'sonner';
 
 const EditJob = () => {
     const params = useParams();
+    const router = useRouter()
     const { id } = params;
     const [initialValues, setInitialValues] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
@@ -24,10 +26,7 @@ const EditJob = () => {
             if (response.status === 200) {
                 setInitialValues(response.data);
                 console.log("Job data fetched successfully:", response.data);
-                toast.success("Job data fetched successfully");
-            } else {
-                console.error("Failed to fetch job data:", response.statusText);
-                toast.error("Failed to fetch job data");
+                toast.success("Job data fetched successfully", { style: { backgroundColor: '#b9f8cf' } });
             }
         } catch (error: any) {
             console.error("Error fetching job data:", error);
@@ -41,12 +40,12 @@ const EditJob = () => {
         try {
             const updatedJobApplication = await axios.put(`http://localhost:3000/api/job/${id}`, payload)
             if (updatedJobApplication.status === 200) {
-                toast.success("Job updated successfully");
+                toast.success("Job updated successfully", { style: { backgroundColor: '#b9f8cf' } });
                 console.log("Job updated successfully:", updatedJobApplication.data);
-            } else {
-                console.error("Failed to update job:", updatedJobApplication.statusText);
-                toast.error("Failed to update job");
             }
+            setTimeout(() => {
+                router.push('/dashboard')
+            }, 1000);
         } catch (error: any) {
             console.error("Error updating job:", error);
             toast.error(error.message);
@@ -59,14 +58,14 @@ const EditJob = () => {
     // Handle delete job
     const handleDeleteJob = async () => {
         try {
-            const deletedJob = await axios.delete(`/api/job/${id}`)
+            const deletedJob = await axios.delete(`http://localhost:3000/api/job/${id}`)
             if (deletedJob.status === 200) {
                 toast.success("Job deleted successfully");
                 console.log("Job deleted successfully:", deletedJob.data);
-            } else {
-                console.error("Failed to delete job:", deletedJob.statusText);
-                toast.error("Failed to delete job");
             }
+            setTimeout(() => {
+                router.push('/dashboard')
+            }, 1000);
         } catch (error: any) {
             console.error("Error deleting job:", error);
             toast.error(error.message);
@@ -91,9 +90,15 @@ const EditJob = () => {
                 </Link>
             </div>
 
+            <div className='py-8'>
+                    <Alert 
+                    job_title={initialValues?.job_title}
+                    company_name={initialValues?.company}
+                    />
+                </div>
 
-            <JobApplicationForm initialValues={initialValues} onFormSubmit={handleJobUpdate} />
-
+            <JobApplicationForm initialValues={initialValues} onFormSubmit={handleJobUpdate} deleteJobStatus={true} />
+            
         </section >
     )
 }

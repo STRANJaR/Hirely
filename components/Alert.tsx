@@ -7,7 +7,7 @@ const Alert = ({ job_title, company_name }: any) => {
             <div>
                 <p className='flex items-center'>
                     <Info className="inline mr-2" />
-                    You're editing your application for &nbsp;  <span className='text-blue-600 font-semibold'>{ job_title }</span> &nbsp; at &nbsp; <span className='text-blue-600 font-semibold'>{company_name}.</span>
+                    You're editing your application for &nbsp;  <span className='text-blue-600 font-semibold'>{ job_title }</span> &nbsp; at &nbsp; <span className='text-blue-600 font-semibold'>{ company_name }.</span>
                 </p>
             </div>
         </div>

@@ -10,14 +10,15 @@ import { Textarea } from '@/components/ui/textarea'
 import axios from 'axios'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { toast } from 'sonner'
 
 
 const createNewJobApplication = () => {
-    const { register, handleSubmit, control, formState: { errors } } = useForm();
     const [loading, setLoading] = React.useState(false)
+    const router = useRouter()
 
     const handleJobApplicationSubmit = async (payload) => {
         setLoading(true)
@@ -28,7 +29,11 @@ const createNewJobApplication = () => {
             if (response.status === 201) {
                 toast.success("Job application submitted successfully", { style: { backgroundColor: '#b9f8cf' } })
                 setLoading(false)
-                return;
+                
+                setTimeout(() => {
+                    router.push('/dashboard')
+                }, 1000);
+
             }
         } catch (error) {
             console.error("Error submitting job application:", error);

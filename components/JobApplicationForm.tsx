@@ -7,13 +7,16 @@ import { Textarea } from '@/components/ui/textarea'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Controller } from 'react-hook-form'
+import { Loader2, Trash2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const JobApplicationForm = ({ initialValues = {}, onFormSubmit }: any) => {
 
 
     const [loading, setLoading] = React.useState(false)
+    const router = useRouter()
 
-    const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
+    const { register, handleSubmit, control, formState: { errors, isSubmitting, isSubmitSuccessful } } = useForm({
         defaultValues: {
             company: initialValues.company || '',
             company_website_url: initialValues.company_website_url || '',
@@ -35,14 +38,17 @@ const JobApplicationForm = ({ initialValues = {}, onFormSubmit }: any) => {
             notes: initialValues.notes || ''
         }
     })
+
+    // Converting ISO date format to YYYY-MM-DD format 
     function formatDate(date) {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
         const day = String(date.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
-      }
-
+    }
     const formattedDate = formatDate(new Date(initialValues.application_date))
+
+
 
     return (
         <div>
@@ -199,7 +205,7 @@ const JobApplicationForm = ({ initialValues = {}, onFormSubmit }: any) => {
                                         <Input
                                             type="date"
                                             className='w-full outline-none'
-                                            value={formattedDate}
+                                            // value={formattedDate}
                                             {...register("application_date", { required: true })}
                                             placeholder='e.g. 2023-10-01'
                                         />
@@ -346,9 +352,10 @@ const JobApplicationForm = ({ initialValues = {}, onFormSubmit }: any) => {
 
 
                         <div className='flex flex-row items-center justify-end gap-4'>
-                            <Button variant={'destructive'} type='reset' className='cursor-pointer'>Cancel</Button>
-                            <Button variant={'default'} type='submit' className='cursor-pointer bg-blue-500 text-white hover:bg-blue-600'>
-                                {loading ? "Submitting..." : "Submit"}
+
+                            <Button variant={'outline'} type='reset' className=' w-40 cursor-pointer'>Reset</Button>
+                            <Button variant={'default'} type='submit' className='w-40 cursor-pointer bg-blue-500 text-white hover:bg-blue-600'>
+                                {isSubmitting ? <Loader2 className='animate-spin' /> : "Submit"}
                             </Button>
                         </div>
                     </form>
