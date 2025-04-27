@@ -6,11 +6,11 @@ import React from 'react'
 const onBordingLayout = ({ children }) => {
   return (
     <div className='grid grid-cols-8 h-screen'>
-      <div className='border-r-2 col-span-1'>
+      <div className='border-r-2 col-span-1 fixed h-screen top-0 left-0 w-56 bg-white'>
         <SideBarComponent/>
       </div>
 
-      <div className='col-span-7'>
+      <div className='col-span-8 ml-56'>  
         {children}
       </div>
     </div>

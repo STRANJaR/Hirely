@@ -2,6 +2,11 @@
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner"
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+} from '@clerk/nextjs'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
+
     <html lang="en">
       <body
         className={` ${roboto.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -37,5 +44,7 @@ export default function RootLayout({
         <Toaster theme="system"/>
       </body>
     </html>
+    </ClerkProvider>
+
   );
 }
