@@ -1,6 +1,6 @@
 'use client'
 
-import JobApplicationCard from '@/components/JobApplicationCard'
+import JobApplicationStatusCard from '@/components/JobApplicationStatusCard'
 import JobList from '@/components/JobList'
 import SearchBar from '@/components/SearchBar'
 import { Button } from '@/components/ui/button'
@@ -55,25 +55,25 @@ const Dashboard = () => {
 
       {/* Job Application Status Cards  */}
       <div className='flex flex-row gap-5 mt-8'>
-        <JobApplicationCard
+        <JobApplicationStatusCard
           cardTitle={"Total Job Applications"}
           value={totalJobApplications}
           redirectTitle={"View All Applications"}
           redirectLocation={"/applications"}
         />
-        <JobApplicationCard
+        <JobApplicationStatusCard
           cardTitle={"In Progress"}
           value={totalJobApplicationsInProgress}
           redirectTitle={"View active"}
           redirectLocation={"/applications"}
         />
-        <JobApplicationCard
+        <JobApplicationStatusCard
           cardTitle={"Interview Scheduled"}
           value={totalJobApplicationsInterview}
           redirectTitle={"View Interviews"}
           redirectLocation={"/applications"}
         />
-        <JobApplicationCard
+        <JobApplicationStatusCard
           cardTitle={"Offers"}
           value={totalJobOffers}
           redirectTitle={"View Offers"}
