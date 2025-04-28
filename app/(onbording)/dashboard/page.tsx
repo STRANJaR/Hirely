@@ -65,19 +65,19 @@ const Dashboard = () => {
           cardTitle={"In Progress"}
           value={totalJobApplicationsInProgress}
           redirectTitle={"View active"}
-          redirectLocation={"/applications"}
+          redirectLocation={"/in-progress"}
         />
         <JobApplicationStatusCard
           cardTitle={"Interview Scheduled"}
           value={totalJobApplicationsInterview}
           redirectTitle={"View Interviews"}
-          redirectLocation={"/applications"}
+          redirectLocation={"/interview-scheduled"}
         />
         <JobApplicationStatusCard
           cardTitle={"Offers"}
           value={totalJobOffers}
           redirectTitle={"View Offers"}
-          redirectLocation={"/applications"}
+          redirectLocation={"/offers"}
         />
       </div>
 
