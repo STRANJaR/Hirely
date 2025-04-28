@@ -4,7 +4,7 @@ import React from 'react'
 import { AvatarFallback } from './ui/avatar'
 import { Building2, MapPin } from 'lucide-react'
 
-const ApplicationCard = ({ company_name, location, status, role, contact_email, company_website, updated_at, redirect_location }: any) => {
+const ApplicationCard = ({ company_name, location, status, role, contact_email, company_website = '', updated_at, redirect_location }: any) => {
     return (
         <div>
             <div className='w-lg h-68 bg-white shadow-md rounded-md px-4 flex flex-col '>
@@ -37,11 +37,11 @@ const ApplicationCard = ({ company_name, location, status, role, contact_email, 
                         <span className='text-sm font-semibold text-gray-500'> "Role" : "{role}" </span>
                         <span className='text-sm font-semibold text-gray-500'> "Contact Email" : "{contact_email}" </span>
                         <Link href={company_website} target='_blank' className='text-sm font-semibold text-gray-500'> "Website" : <span className='hover:text-blue-500'> "{company_website}"</span> </Link>
-                            
+
                     </div>
                     <div className=' w-full flex justify-end'>
                         <span className='w-full text-end text-xs text-gray-500 '>
-                           Last update : {updated_at}
+                            Last update : {updated_at}
                         </span>
 
                     </div>
