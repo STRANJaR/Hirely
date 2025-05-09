@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select"
 
 
+
 const SearchBar = () => {
     return (
         <div>
@@ -31,6 +32,8 @@ const SearchBar = () => {
                     </Select>
 
                 </div>
+
+                
             </div>
         </div>
     )

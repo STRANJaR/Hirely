@@ -4,6 +4,8 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { Separator } from './ui/separator'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import dateFormat, { masks } from "dateformat";
+
 
 const JobList = ({ jobs }) => {
 
@@ -39,9 +41,17 @@ const JobList = ({ jobs }) => {
                                     </div>
 
                                 </td>
-                                <td className="px-4 py-4 text-gray-800">{job.role}</td>
-                                <td className="px-4 py-4 text-xs font-medium"> <span className='bg-pink-200 px-2 rounded-full'>{job.status} </span> </td>
-                                <td className="px-4 py-4">{job.date}</td>
+                                <td className="px-4 py-4 text-gray-600 text-xs font-medium">{job.job_title}</td>
+                                <td className="px-4 py-4 text-xs font-medium"> <span className={`${job?.status === 'Applied' ? 'bg-blue-100 text-blue-500' :
+                                        job?.status === 'Interview' ? 'bg-yellow-100 text-yellow-500' :
+                                            job?.status === 'Offer' ? 'bg-green-100 text-green-500' :
+                                                job?.status === 'Rejected' ? 'bg-red-100 text-red-500' :
+                                                    job?.status === 'Accepted' ? 'bg-[#F3E8FF] text-[#A855F7]' : ''
+                                    } px-3 py-1 rounded-xs`}>{job.status} </span> </td>
+
+                                <td className="px-4 py-4">
+                                    <span className="text-gray-500 text-xs font-medium">{dateFormat(job.application_date, "mmmm dS, yyyy")}</span>
+                                </td>
                                 <td className="px-4 py-4">
                                     <div className="flex h-5 items-center space-x-2 text-sm">
                                         <Link href={`/job/${job._id}`}

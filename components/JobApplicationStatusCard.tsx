@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-const JobApplicationCard = ({ cardTitle, value, redirectTitle, redirectLocation }) => {
+const JobApplicationStatusCard = ({ cardTitle, value, redirectTitle, redirectLocation }: any) => {
   return (
     <div className='w-96 h-40 bg-white shadow-md rounded-md px-4 flex flex-col '>
       <div className='flex flex-col  justify-evenly h-full'>
@@ -27,4 +27,4 @@ const JobApplicationCard = ({ cardTitle, value, redirectTitle, redirectLocation 
   )
 }
 
-export default JobApplicationCard
+export default JobApplicationStatusCard
