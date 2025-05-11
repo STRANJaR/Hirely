@@ -7,7 +7,7 @@ if (!MONGODB_URI) throw new Error("MONGODB_URI is not defined");
 if (!DB_NAME) throw new Error("DB_NAME is not defined");
 
 
-let cached = globalThis.mongoose;
+let cached: { conn: typeof mongoose | null; promise: Promise<typeof mongoose> | null } = (globalThis as any).mongoose;
 
 if (!cached) {
     cached = globalThis.mongoose = { conn: null, promise: null };
