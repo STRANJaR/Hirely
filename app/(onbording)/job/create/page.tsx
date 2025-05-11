@@ -20,7 +20,7 @@ const createNewJobApplication = () => {
     const [loading, setLoading] = React.useState(false)
     const router = useRouter()
 
-    const handleJobApplicationSubmit = async (payload) => {
+    const handleJobApplicationSubmit = async (payload: any) => {
         setLoading(true)
 
         try {

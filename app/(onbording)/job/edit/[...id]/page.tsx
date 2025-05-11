@@ -15,7 +15,13 @@ const EditJob = () => {
     const params = useParams();
     const router = useRouter()
     const { id } = params;
-    const [initialValues, setInitialValues] = React.useState(null);
+    interface JobData {
+        job_title: string;
+        company: string;
+        // Add other properties as needed
+    }
+
+    const [initialValues, setInitialValues] = React.useState<JobData | null>(null);
     const [loading, setLoading] = React.useState(false);
 
 
