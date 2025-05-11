@@ -14,7 +14,15 @@ import { toast } from 'sonner'
 
 const Dashboard = () => {
 
-  const [jobs, setJobs] = React.useState([])
+  // TODO: Add a loading state to the job list 
+  interface Job {
+    id: string;
+    title: string;
+    status: string;
+    // Add other properties as needed
+  }
+
+  const [jobs, setJobs] = React.useState<Job[]>([])
   const [loading, setLoading] = React.useState(false)
 
   console.log("Jobs: ", jobs)
