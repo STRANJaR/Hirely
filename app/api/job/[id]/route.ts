@@ -2,8 +2,14 @@ import Job from "@/models/Job.model";
 import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/utils/db";
 
+type Context = {
+    params: {
+        id: string;
+    };
+};
 
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+
+export async function GET(req: NextRequest, context: Context) {
     await dbConnect();
     const { id } = context.params;
 
@@ -16,7 +22,7 @@ export async function GET(req: NextRequest, context: { params: { id: string } })
     }
 }
 
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+export async function PUT(req: NextRequest, context: Context) {
     await dbConnect();
     const { id } = context.params;
 
@@ -32,7 +38,7 @@ export async function PUT(req: NextRequest, context: { params: { id: string } })
     }
 }
 
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: Context) {
     await dbConnect();
     const { id } = context.params;
 
