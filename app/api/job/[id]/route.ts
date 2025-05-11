@@ -9,9 +9,9 @@ type Context = {
 };
 
 
-export async function GET(req: NextRequest, context: Context) {
+export async function GET(req: NextRequest, {params}: any) {
     await dbConnect();
-    const { id } = context.params;
+    const { id } = params;
 
     try {
         const job = await Job.findById(id);
@@ -22,9 +22,9 @@ export async function GET(req: NextRequest, context: Context) {
     }
 }
 
-export async function PUT(req: NextRequest, context: Context) {
+export async function PUT(req: NextRequest, {params}: any) {
     await dbConnect();
-    const { id } = context.params;
+    const { id } = params;
 
     try {
         const data = await req.json();
@@ -38,9 +38,9 @@ export async function PUT(req: NextRequest, context: Context) {
     }
 }
 
-export async function DELETE(req: NextRequest, context: Context) {
+export async function DELETE(req: NextRequest, {params}: any) {
     await dbConnect();
-    const { id } = context.params;
+    const { id } = params;
 
     try {
         await Job.findByIdAndDelete(id);
