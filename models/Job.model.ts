@@ -2,6 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 export interface IJob {
     _id?: mongoose.Types.ObjectId;
+    userId: string;
     company: string;
     company_website_url: string;
     location: string;
@@ -25,6 +26,10 @@ export interface IJob {
 }
 
 const JobSchema = new Schema<IJob>({
+    userId: {
+        type: String,
+        required: true,
+    },
     company: {
         type: String,
         required: true,

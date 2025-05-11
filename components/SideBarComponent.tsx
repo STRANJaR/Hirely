@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { Separator } from './ui/separator'
 import Link from 'next/link'
@@ -37,7 +38,7 @@ const SideBarComponent = () => {
           <Link href='/analytics'>
             <li className='px-6 py-2 bg hover:bg-gray-200 rounded'>
               <span className='text-gray-700 text-sm font-medium'>
-                <ChartColumnBig className='inline mr-1' /> Statictics
+                <ChartColumnBig className='inline mr-1' /> Analytics
               </span>
             </li>
           </Link>

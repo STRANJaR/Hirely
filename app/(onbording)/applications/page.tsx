@@ -27,7 +27,7 @@ const JobApplications = () => {
 
 
   return (
-    <main className='w-full h-screen bg-gray-100'>
+    <main className='w-full h-full bg-gray-100'>
       <section className='w-full h-full bg-gray-100 px-10 py-8'>
         <div className='flex flex-row items-center justify-between '>
           <h1 className='text-2xl font-bold text-center'>All Applications</h1>

@@ -1,15 +1,15 @@
 'use client'
 
-import {SignIn} from '@clerk/nextjs'
 import React from 'react'
+import {SignUp} from '@clerk/nextjs'
 
-const SignInPage = () => {
+const SignUpPage = () => {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100'>
-      <SignIn
-        path="/sign-in"
+      <SignUp
+        path="/sign-up"
         routing="path"
-        signUpUrl="/sign-up"
+        signInUrl="/sign-in"
         appearance={{
           elements: {
             formFieldInput: 'border-2 border-gray-300 rounded-md p-2',
@@ -21,4 +21,4 @@ const SignInPage = () => {
   )
 }
 
-export default SignInPage
+export default SignUpPage
