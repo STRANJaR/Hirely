@@ -10,7 +10,18 @@ import React, { useEffect, useState } from 'react'
 
 const TotalOffers = () => {
 
-    const [jobData, setJobData] = useState([])
+    interface Job {
+        _id: string;
+        company: string;
+        location: string;
+        status: string;
+        job_title: string;
+        contact_email: string;
+        company_website_url: string;
+        updatedAt: string;
+    }
+
+    const [jobData, setJobData] = useState<Job[]>([])
     console.log('jobdata', jobData);
     
 

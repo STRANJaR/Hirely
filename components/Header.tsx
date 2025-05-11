@@ -25,8 +25,8 @@ const Header = () => {
             {user && (
               <div className='flex items-center gap-2'>
                 <Avatar className='h-10 w-10'>
-                  <AvatarImage src={user?.imageUrl} alt={user?.firstName} />
-                  <AvatarFallback>{user?.firstName.charAt(0)}</AvatarFallback>
+                  <AvatarImage src={user?.imageUrl} />
+                  <AvatarFallback>{user?.firstName?.charAt(0) || 'U'}</AvatarFallback>
                 </Avatar>
                 <span>{user.firstName}</span>
               </div>
