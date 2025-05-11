@@ -1,3 +1,5 @@
+'use client'
+
 export default function FeatureCard({ title, description, icon }) {
     return (
       <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">

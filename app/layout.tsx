@@ -4,8 +4,6 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner"
 import {
   ClerkProvider,
-  SignInButton,
-  SignUpButton,
 } from '@clerk/nextjs'
 
 const geistSans = Geist({
@@ -36,7 +34,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
 
-    <html lang="en">
+    <html lang="en" className="hydrated">
       <body
         className={` ${roboto.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
