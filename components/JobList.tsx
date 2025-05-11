@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import dateFormat, { masks } from "dateformat";
 
 
-const JobList = ({ jobs }) => {
+const JobList = ({ jobs }: any) => {
 
     return (
         <div>
@@ -24,7 +24,7 @@ const JobList = ({ jobs }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {jobs?.map(job => (
+                        {jobs && jobs.map((job: any) => (
                             <tr key={job._id} className="border-t">
                                 <td className="px-4 py-4 text-sm font-semibold">
                                     <div className='flex flex-row items-center space-x-2'>
