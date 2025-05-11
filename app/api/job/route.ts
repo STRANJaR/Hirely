@@ -1,10 +1,15 @@
 import Job from "@/models/Job.model";
 import { dbConnect } from "@/utils/db";
+import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
 
-
 export async function POST(request: NextRequest) {
+    const isUserProtected = await auth.protect()
+    console.log("isUserProtected: ", isUserProtected)
+    if (!isUserProtected) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
         const {
             company,
             company_website_url,
@@ -64,6 +69,7 @@ export async function POST(request: NextRequest) {
 
             try {
                 const newJob = await Job.create({
+                    // userId,
                     company,
                     company_website_url,
                     location,
@@ -99,6 +105,12 @@ export async function POST(request: NextRequest) {
 
         // GET all jobs
         export async function GET(request: NextRequest) {
+            const isUserProtected = await auth.protect()
+    console.log("isUserProtected: ", isUserProtected)
+    if (!isUserProtected) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+            
             try {
                 await dbConnect();
                 const jobs = await Job.find({}).sort({ createdAt: -1 });

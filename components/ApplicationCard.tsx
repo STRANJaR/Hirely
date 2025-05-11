@@ -1,8 +1,11 @@
+'use client'
+
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar'
 import Link from 'next/link'
 import React from 'react'
 import { AvatarFallback } from './ui/avatar'
 import { Building2, MapPin } from 'lucide-react'
+import dateFormat from 'dateformat'
 
 const ApplicationCard = ({ company_name, location, status, role, contact_email, company_website = '', updated_at, redirect_location }: any) => {
     return (
@@ -14,7 +17,7 @@ const ApplicationCard = ({ company_name, location, status, role, contact_email, 
                             <div>
                                 <Avatar className='w-10 h-10'>
                                     <AvatarImage className='w-14 h-14 rounded-md' src="" alt="@shadcn" />
-                                    <AvatarFallback className='w-14 h-14 rounded-md bg-purple-200'>
+                                    <AvatarFallback className='w-14 h-14 rounded-md bg-purple-100'>
                                         {company_name.charAt(0).toUpperCase()}
                                     </AvatarFallback>
                                 </Avatar>
@@ -33,15 +36,15 @@ const ApplicationCard = ({ company_name, location, status, role, contact_email, 
                                 } px-3 py-1 rounded-xs text-sm font-medium`}>{status} </span>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-2 px-2 py-4'>
-                        <span className='text-sm font-semibold text-gray-500'> "Role" : "{role}" </span>
-                        <span className='text-sm font-semibold text-gray-500'> "Contact Email" : "{contact_email}" </span>
-                        <Link href={company_website} target='_blank' className='text-sm font-semibold text-gray-500'> "Website" : <span className='hover:text-blue-500'> "{company_website}"</span> </Link>
+                    <div className='flex flex-col gap-3 px-2 py-4'>
+                        <span className='text-xs    font-semibold text-gray-500'> "Role" : "{role}" </span>
+                        <span className='text-xs    font-semibold text-gray-500'> "Contact Email" : "{contact_email}" </span>
+                        <Link href={company_website} target='_blank' className='text-xs font-semibold text-gray-500'> "Website" : <span className='hover:text-blue-500'> "{company_website}"</span> </Link>
 
                     </div>
                     <div className=' w-full flex justify-end'>
                         <span className='w-full text-end text-xs text-gray-500 '>
-                            Last update : {updated_at}
+                            Last update : {dateFormat(updated_at, 'HH:MM | dd-mm-yyyy')}
                         </span>
 
                     </div>

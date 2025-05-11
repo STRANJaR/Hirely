@@ -4,11 +4,13 @@ import JobApplicationStatusCard from '@/components/JobApplicationStatusCard'
 import JobList from '@/components/JobList'
 import SearchBar from '@/components/SearchBar'
 import { Button } from '@/components/ui/button'
+import { useUser } from '@clerk/nextjs'
 import axios from 'axios'
 import { Plus, RotateCw } from 'lucide-react'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { toast } from 'sonner'
+
 
 const Dashboard = () => {
 
@@ -17,11 +19,13 @@ const Dashboard = () => {
 
   console.log("Jobs: ", jobs)
 
+  const { user } = useUser()
+  console.log("User: ", user?.id)
+
   const fetchJobs = async () => {
     setLoading(true)
     try {
       const response = await axios.get('http://localhost:3000/api/job');
-      console.log(response.data.jobs);
       setJobs(response.data.jobs)
       toast.success('Jobs fetched successfully', { style: { backgroundColor: '#b9f8cf' } })
     } catch (error) {
