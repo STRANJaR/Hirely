@@ -13,9 +13,9 @@ const SideBarComponent = () => {
   return (
     <div className='flex flex-col h-screen py-4'>
       <div className='flex items-center justify-center h-16 mb-4'>
-        <span className='text-1xl font-semibold text-gray-800'>
+        <Link href={'/dashboard'} className='text-1xl font-semibold text-gray-800'>
           <BriefcaseBusiness className='inline mr-2 text-blue-500' /> Hirely
-        </span>
+        </Link>
       </div>
       <Separator className='mb-4' />
 
