@@ -33,7 +33,7 @@ const Dashboard = () => {
   const fetchJobs = async () => {
     setLoading(true)
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/job`);
+      const response = await axios.get(`http://localhost:3000/api/job`);
       setJobs(response.data.jobs)
       toast.success('Jobs fetched successfully', { style: { backgroundColor: '#b9f8cf' } })
     } catch (error) {

@@ -6,6 +6,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     const { userId } = await auth()
+    if(!userId){
+        return NextResponse.json({ error: "Please login" }, { status: 401 })
+    }
     console.log("Server userId: ", userId)
     const {
         company,
@@ -103,6 +106,9 @@ export async function POST(request: NextRequest) {
 // GET all jobs
 export async function GET(request: NextRequest) {
     const { userId } = await auth()
+    if(!userId){
+        return NextResponse.json({ error: "Please login" }, { status: 401 })
+    }
     try {
         await dbConnect();
         const jobs = await Job.find({ userId }).sort({ createdAt: -1 });

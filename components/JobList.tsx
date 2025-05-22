@@ -5,9 +5,15 @@ import React, { useState } from 'react'
 import { Separator } from './ui/separator'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import dateFormat, { masks } from "dateformat";
+import Pagination from './Pagination'
+import { PAGE_SIZE } from '@/constant'
 
 
 const JobList = ({ jobs }: any) => {
+    const [currentPage, setCurrentPage] = useState(0)
+
+    const start = currentPage * PAGE_SIZE;
+    const end = start + PAGE_SIZE;
 
     return (
         <div>
@@ -24,7 +30,7 @@ const JobList = ({ jobs }: any) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {jobs && jobs.map((job: any) => (
+                        {jobs && jobs.slice(start, end).map((job: any) => (
                             <tr key={job._id} className="border-t">
                                 <td className="px-4 py-4 text-sm font-semibold">
                                     <div className='flex flex-row items-center space-x-2'>
@@ -43,10 +49,10 @@ const JobList = ({ jobs }: any) => {
                                 </td>
                                 <td className="px-4 py-4 text-gray-600 text-xs font-medium">{job.job_title}</td>
                                 <td className="px-4 py-4 text-xs font-medium"> <span className={`${job?.status === 'Applied' ? 'bg-blue-100 text-blue-500' :
-                                        job?.status === 'Interview' ? 'bg-yellow-100 text-yellow-500' :
-                                            job?.status === 'Offer' ? 'bg-green-100 text-green-500' :
-                                                job?.status === 'Rejected' ? 'bg-red-100 text-red-500' :
-                                                    job?.status === 'Accepted' ? 'bg-[#F3E8FF] text-[#A855F7]' : ''
+                                    job?.status === 'Interview' ? 'bg-yellow-100 text-yellow-500' :
+                                        job?.status === 'Offer' ? 'bg-green-100 text-green-500' :
+                                            job?.status === 'Rejected' ? 'bg-red-100 text-red-500' :
+                                                job?.status === 'Accepted' ? 'bg-[#F3E8FF] text-[#A855F7]' : ''
                                     } px-3 py-1 rounded-xs`}>{job.status} </span> </td>
 
                                 <td className="px-4 py-4">
@@ -72,6 +78,14 @@ const JobList = ({ jobs }: any) => {
                     </tbody>
                 </table>
             </div>
+
+            {/* pagination  */}
+            <Pagination
+                jobs={jobs}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+            />
+
         </div>
     )
 }

@@ -30,9 +30,9 @@ const createNewJobApplication = () => {
                 toast.success("Job application submitted successfully", { style: { backgroundColor: '#b9f8cf' } })
                 setLoading(false)
                 
-                setTimeout(() => {
-                    router.push('/dashboard')
-                }, 1000);
+                // setTimeout(() => {
+                //     router.push('/dashboard')
+                // }, 1000);
 
             }
         } catch (error) {
