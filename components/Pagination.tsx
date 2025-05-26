@@ -41,10 +41,10 @@ const Pagination = ({ currentPage, setCurrentPage, jobs }: any) => {
                         <span
                             key={page}
                             onClick={() => setCurrentPage(page)}
-                            className={`px-4 py-1 flex items-center text-xs font-semibold text-gray-500 hover:bg-gray-100 border rounded-md cursor-pointer 
-                            ${page === currentPage ? 'bg-blue-100 border-blue-400' : 'bg-gray-50'} `}
+                            className={`px-4 py-1 flex items-center text-xs font-semibold text-gray-500  border rounded-md cursor-pointer 
+                            ${page === currentPage ? 'bg-blue-400 text-white border-blue-400' : 'bg-gray-50'} `}
                         >
-                            {page}
+                            {page + 1}
                         </span>
                     ))]}
 

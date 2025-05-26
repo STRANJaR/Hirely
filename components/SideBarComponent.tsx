@@ -4,11 +4,19 @@ import { Separator } from './ui/separator'
 import Link from 'next/link'
 import { BriefcaseBusiness, ChartColumnBig, FileUser, LayoutDashboard, Settings } from 'lucide-react'
 import { SignOutButton, UserButton, useUser } from '@clerk/nextjs'
+import { usePathname } from 'next/navigation'
+
 
 
 const SideBarComponent = () => {
   const { user } = useUser()
   console.log(user)
+
+
+  const pathname = usePathname();
+  const isActive = (path: string) => {
+    return pathname === path ? 'bg-blue-100 border-blue-500 border-l-4' : ''
+  }
 
   return (
     <div className='flex flex-col h-screen py-4'>
@@ -22,28 +30,28 @@ const SideBarComponent = () => {
       <div className='px-2'>
         <ul className='space-y-3 flex flex-col justify-start'>
           <Link  href='/dashboard'>
-            <li className='px-6 py-2 bg hover:bg-gray-200 rounded'>
+            <li className={`px-6 py-2 bg hover:bg-gray-200 rounded  ${isActive('/dashboard')}`}>
               <span className='text-gray-700 text-sm font-medium'>
                 <LayoutDashboard className='inline mr-1' /> Dashboard
               </span>
             </li>
           </Link>
           <Link href='/applications'>
-            <li className='px-6 py-2 bg hover:bg-gray-200 rounded'>
+            <li className={`px-6 py-2 bg hover:bg-gray-200 rounded ${isActive('/applications')}`}>
               <span className='text-gray-700 text-sm font-medium'>
                 <FileUser className='inline mr-1' /> Applications
               </span>
             </li>
           </Link>
           <Link href='/analytics'>
-            <li className='px-6 py-2 bg hover:bg-gray-200 rounded'>
+            <li className={`px-6 py-2 bg hover:bg-gray-200 rounded ${isActive('/analytics')}`}>
               <span className='text-gray-700 text-sm font-medium'>
                 <ChartColumnBig className='inline mr-1' /> Analytics
               </span>
             </li>
           </Link>
           <Link href='/settings'>
-            <li className='px-6 py-2 bg hover:bg-gray-200 rounded'>
+            <li className={`px-6 py-2 bg hover:bg-gray-200 rounded ${isActive('/settings')}`}>
               <span className='text-gray-700 text-sm font-medium'>
                 <Settings className='inline mr-1' /> Settings
               </span>

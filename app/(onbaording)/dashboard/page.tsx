@@ -17,24 +17,28 @@ const Dashboard = () => {
   // TODO: Add a loading state to the job list 
   interface Job {
     id: string;
-    title: string;
+    company: string;
     status: string;
     // Add other properties as needed
   }
 
   const [jobs, setJobs] = React.useState<Job[]>([])
   const [loading, setLoading] = React.useState(false)
+  const [searchQuery, setSearchQuery] = React.useState('')
+  const [selectedStatus, setSelectedStatus] = React.useState('')
+  const [filteredJobs, setFilteredJobs] = React.useState<Job[]>(jobs)
+  console.log(filteredJobs)
 
-  console.log("Jobs: ", jobs)
 
   const { user } = useUser()
-  console.log("User: ", user?.id)
+
 
   const fetchJobs = async () => {
     setLoading(true)
     try {
       const response = await axios.get(`http://localhost:3000/api/job`);
       setJobs(response.data.jobs)
+      setFilteredJobs(response.data.jobs)
       toast.success('Jobs fetched successfully', { style: { backgroundColor: '#b9f8cf' } })
     } catch (error) {
       console.error('Error fetching jobs:', error);
@@ -45,16 +49,31 @@ const Dashboard = () => {
     setLoading(false)
   }
 
+
   const totalJobApplications = jobs?.length;
   const totalJobApplicationsInProgress = jobs?.filter(job => job?.status !== 'Rejected').length;
   const totalJobApplicationsInterview = jobs?.filter(job => job?.status === 'Interview').length;
   const totalJobOffers = jobs?.filter(job => job?.status === 'Offer').length;
-  
 
   useEffect(() => {
-    fetchJobs()
-  }, [])
+    fetchJobs();
+  }, []);
 
+  useEffect(() => {
+    const filtered = jobs.filter(job => {
+      const matchesSearch = job.company.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesStatus = selectedStatus ? job.status === selectedStatus : true;
+      return matchesSearch && matchesStatus;
+    });
+
+    // FEATURE: Debounce the filtering to avoid API calls on every keystroke
+    const timer = setTimeout(() => {
+      setFilteredJobs(filtered);
+    }, 400)
+
+    return () => clearTimeout(timer);
+
+  }, [searchQuery, selectedStatus, jobs]);
 
   return (
     <section className='w-full h-full bg-gray-100 px-10 py-8'>
@@ -96,7 +115,10 @@ const Dashboard = () => {
       {/* Search Bar */}
       <div className='py-8'>
         <div className='bg-white rounded-md shadow-md px-4 py-4'>
-          <SearchBar />
+          <SearchBar
+            onSearchChange={setSearchQuery}
+            onStatusChange={setSelectedStatus}
+          />
         </div>
       </div>
 
@@ -117,9 +139,7 @@ const Dashboard = () => {
             </span>
           </div>
         </div>
-        <JobList
-          jobs={jobs}
-        />
+        <JobList jobs={filteredJobs} />
       </div>
 
     </section>

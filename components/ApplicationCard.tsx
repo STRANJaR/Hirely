@@ -39,7 +39,7 @@ const ApplicationCard = ({ company_name, location, status, role, contact_email, 
                     <div className='flex flex-col gap-3 px-2 py-4'>
                         <span className='text-xs    font-semibold text-gray-500'> "Role" : "{role}" </span>
                         <span className='text-xs    font-semibold text-gray-500'> "Contact Email" : "{contact_email}" </span>
-                        <Link href={company_website} target='_blank' className='text-xs font-semibold text-gray-500'> "Website" : <span className='hover:text-blue-500'> "{company_website}"</span> </Link>
+                        <Link href={company_website} target='_blank' className='text-xs font-semibold text-gray-500'> "Website" : <span className='text-blue-500 hover:text-blue-600'> "{company_website}"</span> </Link>
 
                     </div>
                     <div className=' w-full flex justify-end'>
